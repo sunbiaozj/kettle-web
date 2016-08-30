@@ -21,7 +21,8 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		
 		var graphPanel = new Ext.Panel({
 			region: 'center',
-			bodyStyle:'overflow: auto'
+			bodyStyle:'overflow: auto',
+			html: '<canvas id="canvas" style="width:100%;height:100%"></canvas>'
 		});
 		
 		this.items = [graphPanel, resultPanel];
@@ -32,7 +33,8 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		
 		graphPanel.on('afterrender', function(comp) {
 			var container = comp.body.dom;
-			this.initGraph(container);
+			this.initGraph1(container);
+			//this.initGraph(container);
 			this.installDragDrop(container);
 			
 			if(this.readOnly === false) {
@@ -180,7 +182,15 @@ BaseGraph = Ext.extend(Ext.Panel, {
 			this.tbar = barArr;
 		}
 	},
-	
+	initGraph1: function(container) {
+		var canvas = Ext.get("canvas");
+		var stage = new JTopo.Stage(canvas);
+		var scene = new JTopo.Scene(stage);
+        scene.background = './img/bg.jpg';
+        var node = new JTopo.Node("Hello");                            
+        node.setLocation(409, 269);
+        scene.add(node);
+	},
 	initGraph: function(container) {
 		var graph = new mxGraph(container);
 		var node = mxUtils.load(GetUrl('mxgraph2/style/default-style.xml?_dc='+new Date().getTime())).getDocumentElement();

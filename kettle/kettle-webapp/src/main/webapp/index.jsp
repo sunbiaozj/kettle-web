@@ -17,6 +17,7 @@
 				系统加载中，请稍后...
 		    </div>
 		</div>
+		<!-- 在线代码编辑器 -->
 		<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/CodeMirror/codemirror.css" />
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/CodeMirror/codemirror.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/CodeMirror/javascript.js"></script>
@@ -95,17 +96,13 @@
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/dialogs/EnterSelectionDialog.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/dialogs/EnterValueDialog.js"></script>
 	    
-	    <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/js/graph/BaseGraph.js"></script>
+	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/graph/BaseGraph.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/graph/TransGraph.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/graph/JobGraph.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/graph/KettleDialog.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/graph/TransResult.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/graph/JobResult.js"></script>
-	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/graph/SlaveServerDialog.js"></script> --%>
-	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/graph/BaseGraph.js"></script>
-	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/graph/TransGraph.js"></script>
-	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/graph/KettleDialog.js"></script>
-	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/graph/TransResult.js"></script>
+	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/graph/SlaveServerDialog.js"></script>
 	    
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/other/TextAreaDialog.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/other/AnswerDialog.js"></script>
@@ -114,5 +111,7 @@
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/GuidePanel.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/initMain.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/initStore.js"></script>
+	    
+	    <script type="text/javascript" src="${pageContext.request.contextPath}/jTopo/jtopo-0.4.8-min.js"></script>
 	</body>
 </html>
