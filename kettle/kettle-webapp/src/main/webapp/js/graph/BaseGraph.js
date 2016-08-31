@@ -33,8 +33,8 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		
 		graphPanel.on('afterrender', function(comp) {
 			var container = comp.body.dom;
-			this.initGraph1(container);
-			//this.initGraph(container);
+			//this.initGraph1(container);
+			this.initGraph(container);
 			this.installDragDrop(container);
 			
 			if(this.readOnly === false) {
@@ -338,6 +338,7 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		};
 	},
 	
+	//输入等拖拉过来的事件
 	installDragDrop: function(ct) {
 		var me = this;
 		new Ext.dd.DropTarget(ct,
