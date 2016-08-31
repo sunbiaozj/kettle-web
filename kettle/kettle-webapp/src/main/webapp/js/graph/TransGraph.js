@@ -424,6 +424,41 @@ TransGraph = Ext.extend(BaseGraph, {
 			}
 		});
 	},
+	
+	newStep1: function(node, x, y, w, h) {
+		var scene = this.getScene();
+		/*Ext.Ajax.request({
+			url: GetUrl('trans/newStep.do'),
+			params: {graphXml: this.toXml(), pluginId: node.attributes.pluginId, name: node.text},
+			method: 'POST',
+			success: function(response) {
+				var doc = response.responseXML;
+         		graph.getModel().beginUpdate();
+				try
+				{
+					var cell = graph.insertVertex(graph.getDefaultParent(), null, doc.documentElement, x, y, w, h, "icon;image=" + node.attributes.dragIcon);
+					graph.setSelectionCells([cell]);
+				} finally
+				{
+					graph.getModel().endUpdate();
+				}
+				graph.container.focus();
+			}
+		});*/
+		var defaultNode = new JTopo.Node();
+        defaultNode.text = '微软雅黑'; // 文字
+        defaultNode.textPosition = 'Middle_Center';// 文字居中
+        defaultNode.textOffsetY = 8; // 文字向下偏移8个像素
+        defaultNode.font = '14px 微软雅黑'; // 字体
+        defaultNode.setLocation(180, 100); // 位置
+        defaultNode.setSize(100, 60);  // 尺寸
+        defaultNode.borderRadius = 5; // 圆角
+        defaultNode.borderWidth = 2; // 边框的宽度
+        defaultNode.borderColor = '255,255,255'; //边框颜色            
+        defaultNode.alpha = 0.7; //透明度
+        
+        scene.add(defaultNode);
+	},
 
 	newHop: function(edge) {
 		var graph = this.getGraph(), found = false;

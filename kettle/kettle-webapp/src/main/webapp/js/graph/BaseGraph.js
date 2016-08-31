@@ -22,7 +22,7 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		var graphPanel = new Ext.Panel({
 			region: 'center',
 			bodyStyle:'overflow: auto',
-			html: '<canvas id="canvas" style="width:100%;height:100%;"></canvas>'
+			//html: '<canvas id="canvas" style="width:100%;height:100%;"></canvas>'
 		});
 		
 		this.items = [graphPanel, resultPanel];
@@ -33,8 +33,8 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		
 		graphPanel.on('afterrender', function(comp) {
 			var container = comp.body.dom;
-			this.initGraph1(container);
-			//this.initGraph(container);
+			//this.initGraph1(container);
+			this.initGraph(container);
 			this.installDragDrop(container);
 			
 			if(this.readOnly === false) {
@@ -226,6 +226,9 @@ BaseGraph = Ext.extend(Ext.Panel, {
         node.mouseout(function(event){                
             console.log("mouseout");                
         });
+        this.getScene = function() {
+			return scene;
+		};
 	},
 	initGraph: function(container) {
 		var graph = new mxGraph(container);
@@ -332,6 +335,7 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		};
 	},
 	
+	//输入等拖拉过来的事件
 	installDragDrop: function(ct) {
 		var me = this;
 		new Ext.dd.DropTarget(ct,
