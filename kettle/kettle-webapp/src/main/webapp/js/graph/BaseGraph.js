@@ -22,7 +22,7 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		var graphPanel = new Ext.Panel({
 			region: 'center',
 			bodyStyle:'overflow: auto',
-			html: '<canvas id="canvas" style="width:100%;height:100%;"></canvas>'
+			html: '<div id="pan" style="width:100%;height:100%"><canvas id="canvas"></canvas></div>'
 		});
 		
 		this.items = [graphPanel, resultPanel];
@@ -183,49 +183,55 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		}
 	},
 	initGraph1: function(container) {
-		var canvas = document.getElementById("canvas");
+		var canvas = document.getElementById('canvas');	
+		resizeCanvas();
+
 		var stage = new JTopo.Stage(canvas);
 		var scene = new JTopo.Scene(stage);
-        var node = new JTopo.Node("Hello");                            
-        node.setLocation(30, 30);
-        scene.add(node);
-        node.mousedown(function(event){
-            if(event.button == 2){
-                node.text = '按下右键';                    
-            }else if(event.button == 1){
-                node.text = '按下中键';                    
-            }else if(event.button == 0){
-                node.text = '按下左键';    
-            }                
-        });
-        
-        node.mouseup(function(event){                
-            if(event.button == 2){
-                node.text = '松开右键';                    
-            }else if(event.button == 1){
-                node.text = '松开中键';                    
-            }else if(event.button == 0){
-                node.text = '松开左键';    
-            }
-        });    
-        node.click(function(event){                    
-            console.log("单击");                
-        });    
-        node.dbclick(function(event){                
-            console.log("双击");                
-        });
-        node.mousedrag(function(event){                
-            console.log("拖拽");
-        });    
-        node.mouseover(function(event){                
-            console.log("mouseover");                
-        });
-        node.mousemove(function(event){                
-            console.log("mousemove");                
-        });    
-        node.mouseout(function(event){                
-            console.log("mouseout");                
-        });
+		
+		scene.background = 'jTopo/bg.jpg';
+		
+		var node = new JTopo.Node("Hello");							
+		node.setLocation(30, 30);
+		scene.add(node);
+
+		node.mousedown(function(event){
+			if(event.button == 2){
+				node.text = '按下右键';					
+			}else if(event.button == 1){
+				node.text = '按下中键';					
+			}else if(event.button == 0){
+				node.text = '按下左键';	
+			}				
+		});
+		
+		node.mouseup(function(event){				
+			if(event.button == 2){
+				node.text = '松开右键';					
+			}else if(event.button == 1){
+				node.text = '松开中键';					
+			}else if(event.button == 0){
+				node.text = '松开左键';	
+			}
+		});	
+		node.click(function(event){					
+			console.log("单击");				
+		});	
+		node.dbclick(function(event){				
+			console.log("双击");				
+		});
+		node.mousedrag(function(event){				
+			console.log("拖拽");
+		});	
+		node.mouseover(function(event){				
+			console.log("mouseover");				
+		});
+		node.mousemove(function(event){				
+			console.log("mousemove");				
+		});	
+		node.mouseout(function(event){				
+			console.log("mouseout");				
+		});	
 	},
 	initGraph: function(container) {
 		var graph = new mxGraph(container);

@@ -112,6 +112,8 @@
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/initMain.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/initStore.js"></script>
 	    
+	    <script type="text/javascript" src="${pageContext.request.contextPath}/jTopo/jquery-3.1.0.min.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/jTopo/jtopo-0.4.8-min.js"></script>
+	    <script type="text/javascript" src="${pageContext.request.contextPath}/jTopo/canvas.js"></script>
 	</body>
 </html>
