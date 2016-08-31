@@ -33,14 +33,14 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		
 		graphPanel.on('afterrender', function(comp) {
 			var container = comp.body.dom;
-			//this.initGraph1(container);
-			this.initGraph(container);
+			this.initGraph1(container);
+			//this.initGraph(container);
 			this.installDragDrop(container);
 			
-			if(this.readOnly === false) {
+			/*if(this.readOnly === false) {
 				this.installPopupMenu(container);
 				this.installKeyHandler();
-			}
+			}*/
 		}, this);
 		
 		BaseGraph.superclass.initComponent.call(this);
@@ -59,9 +59,9 @@ BaseGraph = Ext.extend(Ext.Panel, {
 			this.setTitle(cell.getAttribute('name'));
 		}, this);
 		
-		graphPanel.on('resize', function() {
+		/*graphPanel.on('resize', function() {
 			me.getGraph().sizeDidChange();
-		});
+		});*/
 	},
 	
 	installToolbar: function() {
@@ -232,6 +232,9 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		node.mouseout(function(event){				
 			console.log("mouseout");				
 		});	
+		this.getScene = function() {
+			return scene;
+		};
 	},
 	initGraph: function(container) {
 		var graph = new mxGraph(container);
@@ -347,7 +350,7 @@ BaseGraph = Ext.extend(Ext.Panel, {
             notifyDrop: function(ddSource, e, data) {  
             	var xy1 = Ext.fly(ct).getXY(), xy2 = e.getXY();
          		var top = xy2[1] - xy1[1], left = xy2[0]-xy1[0];
-				me.newStep(data.node, left, top, kettle.step_size, kettle.step_size);
+				me.newStep1(data.node, left, top, kettle.step_size, kettle.step_size);
          		return true;
             }
         });
