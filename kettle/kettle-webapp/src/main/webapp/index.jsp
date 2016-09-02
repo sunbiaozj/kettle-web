@@ -1,5 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <!DOCTYPE html>
+<style>
+	#contextmenu {
+		border: 1px solid #aaa;
+		border-bottom: 0;
+		background: #eee;
+		position: absolute;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: none;
+	}
+																			   
+	#contextmenu li a {
+		display: block;
+		padding: 10px;
+		border-bottom: 1px solid #aaa;
+		cursor: pointer;
+	}
+																			   
+	#contextmenu li a:hover {
+		background: #fff;
+	}
+</style>
 <html>
 	<head>
 	  	<title>KettleConsole</title>
@@ -7,6 +30,15 @@
 	  	<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/ui/css/public.css" />
 	</head>
 	<body>
+		<ul id="contextmenu" style="display:none;">    
+		    <li><a>新建注释</a></li>
+		    <li><a>从剪贴板粘贴步骤</a></li>    
+		    <li><a>全选</a></li>
+		    <li><a>清除选择</a></li>
+		    <li><a>查看图形文件</a></li>    
+		    <li><a>查看引擎文件</a></li>
+		    <li><a>转换设置</a></li>
+	    </ul>
 		<div id="loading-mask">
 			<input type="hidden" id="context-path" value="${pageContext.request.contextPath}" />
 			<script type="text/javascript" src="${pageContext.request.contextPath}/js/other/init.js"></script>
@@ -115,5 +147,8 @@
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/jTopo/jquery-3.1.0.min.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/jTopo/jtopo-0.4.8-min.js"></script>
 	    <script type="text/javascript" src="${pageContext.request.contextPath}/jTopo/canvas.js"></script>
+	    
+	    
+	    <script type="text/javascript" src="${pageContext.request.contextPath}/js/jtopoEvent/tranEvent.js"></script>
 	</body>
 </html>
