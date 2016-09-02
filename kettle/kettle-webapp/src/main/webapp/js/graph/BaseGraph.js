@@ -24,11 +24,11 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		var graphPanel = new Ext.Panel({
 			region: 'center',
 			bodyStyle:'overflow: auto',
-			html: '<div id="pan" style="width:100%;height:100%"><canvas id="canvas"></canvas></div>'
+			html: '<canvas id="canvas"></canvas>'
 		});
 		
 		this.items = [graphPanel, resultPanel];
-		this.installToolbar();		
+		this.installToolbar();
 		this.loadLocal = function(result) {
 			resultPanel.loadLocal(result);
 		};
@@ -38,6 +38,7 @@ BaseGraph = Ext.extend(Ext.Panel, {
 			this.initGraph1(container);
 //			this.initGraph(container);
 			this.installDragDrop(container);
+
 			
 			if(this.readOnly === false) {
 //				this.installPopupMenu(container);
@@ -187,7 +188,7 @@ BaseGraph = Ext.extend(Ext.Panel, {
 	},
 	initGraph1: function(container) {
 		var canvas = document.getElementById('canvas');	
-		resizeCanvas();
+		//resizeCanvas();
 
 		var stage = new JTopo.Stage(canvas);
 		var scene = new JTopo.Scene(stage);
