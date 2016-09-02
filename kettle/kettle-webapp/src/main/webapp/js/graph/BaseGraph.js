@@ -19,6 +19,8 @@ BaseGraph = Ext.extend(Ext.Panel, {
 			me.doLayout();
 		};
 		
+//		var ul = '<ul id="contextmenu" style="display:none;"><li><a>顺时针旋转</a></li><li><a>逆时针旋转</a></li><li><a>更改颜色</a></li></ul>';
+		
 		var graphPanel = new Ext.Panel({
 			region: 'center',
 			bodyStyle:'overflow: auto',
@@ -34,13 +36,14 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		graphPanel.on('afterrender', function(comp) {
 			var container = comp.body.dom;
 			this.initGraph1(container);
-			//this.initGraph(container);
+//			this.initGraph(container);
 			this.installDragDrop(container);
 			
-			/*if(this.readOnly === false) {
-				this.installPopupMenu(container);
-				this.installKeyHandler();
-			}*/
+			if(this.readOnly === false) {
+//				this.installPopupMenu(container);
+				this.installPopupMenu1(container);
+//				this.installKeyHandler();
+			}
 		}, this);
 		
 		BaseGraph.superclass.initComponent.call(this);
@@ -59,9 +62,9 @@ BaseGraph = Ext.extend(Ext.Panel, {
 			this.setTitle(cell.getAttribute('name'));
 		}, this);
 		
-		/*graphPanel.on('resize', function() {
-			me.getGraph().sizeDidChange();
-		});*/
+//		graphPanel.on('resize', function() {
+//			me.getGraph().sizeDidChange();
+//		});
 	},
 	
 	installToolbar: function() {
@@ -194,6 +197,8 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		var node = new JTopo.Node("Hello");							
 		node.setLocation(30, 30);
 		scene.add(node);
+		
+		
 
 		node.mousedown(function(event){
 			if(event.button == 2){
@@ -391,6 +396,15 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		{
 			graph.popupMenuHandler.hideMenu();
 		}));
+	},
+	
+	installPopupMenu1: function(container) {
+		var scene = this.getScene();
+		scene.addEventListener('mouseup', function(event){
+            currentNode = this;
+            handler(event);
+        });
+		
 	},
 	
 	installKeyHandler: function() {

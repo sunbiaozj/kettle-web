@@ -432,7 +432,7 @@ TransGraph = Ext.extend(BaseGraph, {
 			params: {graphXml: this.toXml(), pluginId: node.attributes.pluginId, name: node.text},
 			method: 'POST',
 			success: function(response) {
-				var doc = response.responseXML;
+				//var doc = response.responseXML;
          		graph.getModel().beginUpdate();
 				try
 				{
@@ -443,21 +443,40 @@ TransGraph = Ext.extend(BaseGraph, {
 					graph.getModel().endUpdate();
 				}
 				graph.container.focus();
+				
 			}
 		});*/
-		var defaultNode = new JTopo.Node();
-        defaultNode.text = '微软雅黑'; // 文字
-        defaultNode.textPosition = 'Middle_Center';// 文字居中
-        defaultNode.textOffsetY = 8; // 文字向下偏移8个像素
-        defaultNode.font = '14px 微软雅黑'; // 字体
-        defaultNode.setLocation(180, 100); // 位置
-        defaultNode.setSize(100, 60);  // 尺寸
-        defaultNode.borderRadius = 5; // 圆角
-        defaultNode.borderWidth = 2; // 边框的宽度
-        defaultNode.borderColor = '255,255,255'; //边框颜色            
-        defaultNode.alpha = 0.7; //透明度
-        
-        scene.add(defaultNode);
+		//节点名称
+		var text = node.text;
+		//判断是否是红色的字体
+		var fdStart = text.indexOf("<font>");
+		if(fdStart == 0){//是红色的字体
+			
+		}else if(fdStart == -1){
+			console.log(node.attributes.dragIcon);
+			var defaultNode = new JTopo.Node(node.text);
+	        defaultNode.textOffsetY = -8; // 文字向下偏移8个像素
+	        defaultNode.setImage(node.attributes.dragIcon) // 图片
+	        defaultNode.font = '14px 微软雅黑'; // 字体
+	        defaultNode.setLocation(180, 100); // 位置
+	        defaultNode.setBound(x, y, w, h); // 位置和尺寸
+	        defaultNode.borderRadius = 5; // 圆角
+	        defaultNode.borderWidth = 2; // 边框的宽度
+	        defaultNode.borderColor = '255,255,255'; //边框颜色            
+	        defaultNode.alpha = 0.7; //透明度
+	        defaultNode.selected = true; //是否选中
+	        
+	        
+	        /*defaultNode.dbclick(function(event,evt){				
+	        	var cell = evt.getProperty('cell');
+				if(cell && cell.isVertex()) {
+					me.editCell(cell);
+				}			
+			});*/
+	        
+	        scene.add(defaultNode);
+		}
+		
 	},
 
 	newHop: function(edge) {
