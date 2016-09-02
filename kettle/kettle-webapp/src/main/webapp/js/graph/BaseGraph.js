@@ -191,11 +191,13 @@ BaseGraph = Ext.extend(Ext.Panel, {
 
 		var stage = new JTopo.Stage(canvas);
 		var scene = new JTopo.Scene(stage);
-		
-		scene.background = 'jTopo/bg.jpg';
+		stage.mode = "select";
 		this.getScene = function() {
 			return scene;
 		};
+
+		container.style.background = 'url("' + GetUrl('ui/images/grid.gif') + '") repeat white';
+		container.style.cursor = 'hand';
 	},
 	initGraph: function(container) {
 		var graph = new mxGraph(container);
