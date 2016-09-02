@@ -466,6 +466,12 @@ TransGraph = Ext.extend(BaseGraph, {
 	        defaultNode.alpha = 0.7; //透明度
 	        defaultNode.selected = true; //是否选中
 	        
+	        //添加鼠标点击事件
+	        defaultNode.addEventListener('mouseup', function(event){
+	        	if(event.button == 0){//按下左键
+	        		defaultNode.selected = true;
+                }
+	        });
 	        
 	        /*defaultNode.dbclick(function(event,evt){				
 	        	var cell = evt.getProperty('cell');

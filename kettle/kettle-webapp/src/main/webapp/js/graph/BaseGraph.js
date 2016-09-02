@@ -191,6 +191,7 @@ BaseGraph = Ext.extend(Ext.Panel, {
 
 		var stage = new JTopo.Stage(canvas);
 		var scene = new JTopo.Scene(stage);
+		stage.showToolbar = false;//将右键选择多个给禁用
 		stage.mode = "select";
 		this.getScene = function() {
 			return scene;
@@ -358,9 +359,9 @@ BaseGraph = Ext.extend(Ext.Panel, {
 	
 	installPopupMenu1: function(container) {
 		var scene = this.getScene();
-		scene.addEventListener('mouseup', function(event){
+		scene.addEventListener('mousedown', function(event){
             currentNode = this;
-            handler(event);
+            handler(event,scene);
         });
 		
 	},
