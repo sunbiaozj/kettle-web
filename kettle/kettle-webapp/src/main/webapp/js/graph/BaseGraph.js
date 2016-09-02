@@ -197,6 +197,50 @@ BaseGraph = Ext.extend(Ext.Panel, {
 			return scene;
 		};
 
+
+		var beginNode = null;
+	    var tempNodeA = new JTopo.Node('tempA');
+	    tempNodeA.setSize(1, 1);
+	    
+	    var tempNodeZ = new JTopo.Node('tempZ');
+	    tempNodeZ.setSize(1, 1);
+	    
+	    var link = new JTopo.Link(tempNodeA, tempNodeZ);
+	    
+	    scene.mouseup(function(e){
+	        if(e.button == 2){
+	            scene.remove(link);
+	            return;
+	        }
+	        if(e.target != null && e.target instanceof JTopo.Node){
+	            if(beginNode == null){
+	                beginNode = e.target;
+	                scene.add(link);
+	                tempNodeA.setLocation(e.x, e.y);
+	                tempNodeZ.setLocation(e.x, e.y);
+	            }else if(beginNode !== e.target){
+	                var endNode = e.target;
+	                var l = new JTopo.Link(beginNode, endNode);
+	                scene.add(l);
+	                beginNode = null;
+	                scene.remove(link);
+	            }else{
+	                beginNode = null;
+	            }
+	        }else{
+	            scene.remove(link);
+	        }
+	    });
+	    
+	    scene.mousedown(function(e){
+	        if(e.target == null || e.target === beginNode || e.target === link){
+	            scene.remove(link);
+	        }
+	    });
+	    scene.mousemove(function(e){
+	        tempNodeZ.setLocation(e.x, e.y);
+	    });
+
 		container.style.background = 'url("' + GetUrl('ui/images/grid.gif') + '") repeat white';
 		container.style.cursor = 'hand';
 	},
