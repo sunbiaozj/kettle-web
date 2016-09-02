@@ -364,9 +364,25 @@ RepositoryManageTree = Ext.extend(RepositoryTree, {
 						var xtype = (type == 'job') ? 'JobGraph' : 'TransGraph';
 						var graphPanel = Ext.create({repositoryId: path}, xtype);
 						var tabPanel = Ext.getCmp('TabPanel');
+						
 						tabPanel.add(graphPanel);
 						tabPanel.setActiveTab(graphPanel.getId());
+
+						//canvas自适应
+						graphPanel.on('resize',function(){
+							var panWidth = this.body.dom.clientWidth;
+							var panHeight = this.body.dom.clientHeight;
+							var canvas = $('#canvas'); 
+							canvas.attr("width",panWidth);  
+							canvas.attr("height",panHeight-5);
+						});
+						var panWidth = graphPanel.body.dom.clientWidth;
+						var panHeight = graphPanel.body.dom.clientHeight;
+						var canvas = $('#canvas'); 
+						canvas.attr("width",panWidth);  
+						canvas.attr("height",panHeight-5);
 						
+						context.fillRect(0,0,canvas.width(),canvas.height()); 
 						var xmlDocument = mxUtils.parseXml(decodeURIComponent(response.responseText));
 						var decoder = new mxCodec(xmlDocument);
 						var node = xmlDocument.documentElement;
