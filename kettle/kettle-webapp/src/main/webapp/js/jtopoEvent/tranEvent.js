@@ -7,11 +7,15 @@ function handler(event,scene){
 		s[i].selected = false;
 	}
     if(event.button == 2){// 右键
-        // 当前位置弹出菜单（div）
-        $("#contextmenu").css({
-            top: event.pageY,
-            left: event.pageX
-        }).show();    
+    	if(event.target != null && event.target instanceof JTopo.Node){//如果右键的是组件的话弹出内容不同
+    		alert('这个是节点');
+    	}else{
+    		// 当前位置弹出菜单（div）
+            $("#contextmenu").css({
+                top: event.pageY,
+                left: event.pageX
+            }).show(); 
+    	}
     }else{
     	$("#contextmenu").hide();
     }

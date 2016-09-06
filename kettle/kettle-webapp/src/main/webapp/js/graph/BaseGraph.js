@@ -196,6 +196,10 @@ BaseGraph = Ext.extend(Ext.Panel, {
 		this.getScene = function() {
 			return scene;
 		};
+		
+		//存储连线的
+		var param = new Object();
+		
 
 
 		var beginNode = null;
@@ -206,6 +210,7 @@ BaseGraph = Ext.extend(Ext.Panel, {
 	    tempNodeZ.setSize(1, 1);
 	    
 	    var link = new JTopo.Link(tempNodeA, tempNodeZ);
+	    link.arrowsRadius = 15;
 	    
 	    scene.mouseup(function(e){
 	        if(e.button == 2){
@@ -221,9 +226,20 @@ BaseGraph = Ext.extend(Ext.Panel, {
 	            }else if(beginNode !== e.target){
 	                var endNode = e.target;
 	                var l = new JTopo.Link(beginNode, endNode);
-	                scene.add(l);
-	                beginNode = null;
-	                scene.remove(link);
+	                l.arrowsRadius = 15;
+	                var begin = beginNode.text;
+	                var end = endNode.text;
+	                //判断是否已经连接过
+	                if(param[begin] !=null && param[begin] == end || param[end] == begin){
+	                	beginNode = null;
+		                scene.remove(l);
+		                scene.remove(link);
+	                }else{
+	                	scene.add(l);
+	                	param[begin]=end;
+	                	beginNode = null;
+		                scene.remove(link);
+	                }
 	            }else{
 	                beginNode = null;
 	            }

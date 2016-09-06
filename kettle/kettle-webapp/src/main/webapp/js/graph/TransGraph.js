@@ -458,12 +458,13 @@ TransGraph = Ext.extend(BaseGraph, {
 	        defaultNode.textOffsetY = -8; // 文字向下偏移8个像素
 	        defaultNode.setImage(node.attributes.dragIcon) // 图片
 	        defaultNode.font = '14px 微软雅黑'; // 字体
-	        defaultNode.setLocation(180, 100); // 位置
+	        defaultNode.fontColor = "0,0,0";//字体颜色
+//	        defaultNode.setLocation(180, 100); // 位置
 	        defaultNode.setBound(x, y, w, h); // 位置和尺寸
 	        defaultNode.borderRadius = 5; // 圆角
 	        defaultNode.borderWidth = 2; // 边框的宽度
-	        defaultNode.borderColor = '255,255,255'; //边框颜色            
-	        defaultNode.alpha = 0.7; //透明度
+	        defaultNode.borderColor = '0,0,0'; //边框颜色            
+//	        defaultNode.alpha = 1; //透明度
 	        defaultNode.selected = true; //是否选中
 	        
 	        //添加鼠标点击事件
